@@ -1,0 +1,27 @@
+THEOZLABS FLAT GITHUB UPLOAD
+
+1. In the iPhone file picker, tap Select All.
+2. Confirm every item in this folder is selected.
+3. Upload the files to the root of `ozgurkilinc/theozlabs-site`.
+4. If GitHub asks about replacing README.md, replace it.
+5. Commit message:
+   Initialize TheOzLabs professional platform
+
+6. In GitHub:
+   Settings → Pages
+   Source: Deploy from a branch
+   Branch: main
+   Folder: / (root)
+   Save
+
+7. Wait for deployment.
+
+8. Test in a private browser:
+   https://ozgurkilinc.github.io/theozlabs-site/
+   https://ozgurkilinc.github.io/theozlabs-site/serialflow.html
+   https://ozgurkilinc.github.io/theozlabs-site/privacy.html
+   https://ozgurkilinc.github.io/theozlabs-site/terms.html
+   https://ozgurkilinc.github.io/theozlabs-site/support.html
+
+This flat package intentionally contains no folders, hidden files, workflow files,
+or build directories so it can be uploaded from an iPhone in one selection.
