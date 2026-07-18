@@ -13,6 +13,13 @@
   },
   "apps": [
     {
+      "name": "SerialFlow",
+      "status": "in_canva_review",
+      "legacy_frozen": true,
+      "app_id": "AAHAAMisM-U",
+      "public_page": "/serialflow.html"
+    },
+    {
       "name": "PosterTile",
       "status": "in_canva_review",
       "legacy_frozen": true,
@@ -29,13 +36,6 @@
       "status": "in_canva_review",
       "legacy_frozen": true,
       "public_page": "/sheetnest.html"
-    },
-    {
-      "name": "SerialFlow",
-      "status": "draft_preview_working",
-      "legacy_frozen": false,
-      "app_id": "AAHAAMisM-U",
-      "public_page": "/serialflow.html"
     }
   ]
 }
