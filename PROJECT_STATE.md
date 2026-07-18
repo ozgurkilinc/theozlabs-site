@@ -30,8 +30,10 @@ Stable public paths:
 ## Current presentation
 
 - TheOzLabs uses the orange tie as its shared brand mark.
-- Each app has its own product icon and subject description.
-- All four app pages and status entries display `In Canva review`.
+- Each app has its own original product icon and subject description.
+- App icons use contained sizing so artwork is not cropped or stretched.
+- Public app pages and status entries display `For Canva users`.
+- Internal Canva review status remains tracked separately in `APP_REGISTRY.json`.
 
 ## V2 publish note
 
