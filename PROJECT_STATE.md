@@ -33,7 +33,20 @@ Stable public paths:
 - Each app has its own original product icon and subject description.
 - App icons use contained sizing so artwork is not cropped or stretched.
 - Public app pages and status entries display `For Canva users`.
+- Status detail text uses `Canva workflow`.
 - Internal Canva review status remains tracked separately in `APP_REGISTRY.json`.
+
+## Future app rule
+
+Every future application must be integrated as a sibling of the existing four apps, with its own original icon, subject-specific page, Home and Apps cards, separate Status row, registry entry, and stable public path.
+
+Before adding or changing an app, read and follow:
+
+- `PROJECT_STATE.md`
+- `APP_REGISTRY.json`
+- `NEW_APP_INTEGRATION.md`
+
+These repository files are the canonical project memory and take priority if a chat summary or remembered detail conflicts with the repository.
 
 ## V2 publish note
 
