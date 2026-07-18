@@ -1,0 +1,36 @@
+THEOZLABS SITE V2 — GITHUB YÜKLEME
+
+HEDEF REPO
+https://github.com/ozgurkilinc/theozlabs-site
+
+YAPILACAKLAR
+1. Bu klasördeki tüm dosyaları seç.
+2. Dosyaları repository kök dizinine yükle; alt klasör oluşturma.
+3. Aynı adlı mevcut dosyalar varsa değiştir.
+4. Commit mesajı olarak şunu kullan:
+   Publish TheOzLabs site V2
+5. GitHub Pages ayarı main / (root) olarak kalmalı.
+
+KONTROL EDİLECEK SAYFALAR
+- /
+- /apps.html
+- /serialflow.html
+- /postertile.html
+- /bookletflow.html
+- /sheetnest.html
+- /status.html
+- /support.html
+- /privacy.html
+- /terms.html
+
+DOSYA YAPISI
+- 10 HTML sayfası
+- Ortak styles.css
+- Ortak site.js
+- İki icon seçeneği: APP_ICON_A.png ve APP_ICON_B.png
+
+NOTLAR
+- APP_ICON_A varsayılan, APP_ICON_B alternatif seçenektir.
+- Dosyalarda dış font veya ağır JavaScript kütüphanesi kullanılmaz.
+- Tasarım mobil, tablet, masaüstü ve dark mode ile uyumludur.
+- Dört uygulama ana sayfada eşit boyutta gösterilir.
