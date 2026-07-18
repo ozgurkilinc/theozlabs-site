@@ -12,26 +12,25 @@ const APP_INFO = {
 
 const ASSET_SCRIPTS = [
   'assets/serialflow.js',
-  'assets/postertile-1.js','assets/postertile-2.js','assets/postertile-3.js',
-  'assets/postertile-4.js','assets/postertile-5.js','assets/postertile-6.js',
-  'assets/bookletflow.js',
-  'assets/sheetnest-1.js','assets/sheetnest-2.js','assets/sheetnest-3.js'
+  'assets/postertile-icon.js',
+  'assets/bookletflow-icon.js',
+  'assets/sheetnest-icon.js'
 ];
 
 const customStyle = document.createElement('style');
 customStyle.textContent = `
 .brand-mark{display:grid!important;place-items:center!important;width:40px!important;height:40px!important;border-radius:13px!important;background:#fff!important;box-shadow:0 10px 25px rgba(255,111,48,.20)!important;overflow:hidden!important}
 .brand-mark img{width:28px;height:28px;display:block}
-.app-card{padding-right:105px!important}
-.app-card .app-icon{position:absolute;right:24px;top:24px;width:66px;height:66px;border-radius:18px;object-fit:cover;box-shadow:0 12px 26px rgba(30,20,70,.16);z-index:2}
-.badge.review{background:#fff1e7;color:#b94b16;border:1px solid rgba(255,111,48,.22)}
-.product-glyph{width:180px!important;height:180px!important;padding:0!important;background:transparent!important;box-shadow:none!important;border-radius:42px!important;overflow:hidden!important}
-.product-glyph .product-icon{width:100%;height:100%;object-fit:cover;display:block}
+.app-card{padding-right:108px!important}
+.app-card .app-icon{position:absolute;right:24px;top:24px;width:70px;height:70px;border-radius:18px;object-fit:contain;background:#fff;padding:5px;box-shadow:0 12px 26px rgba(30,20,70,.16);z-index:2}
+.badge.canva-users{background:#eeeaff;color:#563dda;border:1px solid rgba(112,85,255,.22)}
+.product-glyph{width:190px!important;height:190px!important;padding:8px!important;background:#fff!important;box-shadow:0 20px 42px rgba(30,20,70,.14)!important;border-radius:42px!important;overflow:hidden!important}
+.product-glyph .product-icon{width:100%;height:100%;object-fit:contain;display:block;border-radius:32px}
 .status-app{display:flex;align-items:center;gap:15px;min-width:0}
-.status-icon{width:48px;height:48px;border-radius:13px;object-fit:cover;box-shadow:0 8px 20px rgba(30,20,70,.12);flex:0 0 auto}
-.status-state.review{background:#fff1e7!important;color:#b94b16!important;border:1px solid rgba(255,111,48,.22)}
-@media(max-width:700px){.app-card{padding-right:82px!important}.app-card .app-icon{width:52px;height:52px;right:18px;top:18px;border-radius:14px}.product-glyph{width:150px!important;height:150px!important}.status-icon{width:42px;height:42px}}
-@media(prefers-color-scheme:dark){.brand-mark{background:#211b31!important}.badge.review,.status-state.review{background:#3b241c!important;color:#ffb17b!important;border-color:#6b3825!important}}
+.status-icon{width:52px;height:52px;border-radius:14px;object-fit:contain;background:#fff;padding:4px;box-shadow:0 8px 20px rgba(30,20,70,.12);flex:0 0 auto}
+.status-state.canva-users{background:#eeeaff!important;color:#563dda!important;border:1px solid rgba(112,85,255,.22)}
+@media(max-width:700px){.app-card{padding-right:84px!important}.app-card .app-icon{width:56px;height:56px;right:18px;top:18px;border-radius:15px}.product-glyph{width:155px!important;height:155px!important}.status-icon{width:44px;height:44px}}
+@media(prefers-color-scheme:dark){.brand-mark{background:#211b31!important}.badge.canva-users,.status-state.canva-users{background:#2b2447!important;color:#c8bcff!important;border-color:#51457d!important}.app-card .app-icon,.product-glyph,.status-icon{background:#fff!important}}
 `;
 document.head.appendChild(customStyle);
 
@@ -94,20 +93,20 @@ if ('IntersectionObserver' in window) {
 }
 
 function loadScript(src) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const script = document.createElement('script');
     script.src = src;
     script.onload = resolve;
-    script.onerror = reject;
+    script.onerror = resolve;
     document.head.appendChild(script);
   });
 }
 
-function reviewBadge(badge) {
+function canvaBadge(badge) {
   if (!badge) return;
-  badge.textContent = 'In Canva review';
-  badge.classList.remove('success');
-  badge.classList.add('review');
+  badge.textContent = 'For Canva users';
+  badge.classList.remove('success', 'review');
+  badge.classList.add('canva-users');
 }
 
 function appImage(key, className, alt) {
@@ -126,11 +125,11 @@ function hydrateApps() {
     const href = (card.getAttribute('href') || '').split('/').pop();
     const app = APP_INFO[href];
     if (!app) return;
-    if (!card.querySelector('.app-icon')) {
-      const image = appImage(app.key, 'app-icon', `${app.name} icon`);
-      if (image) card.prepend(image);
-    }
-    reviewBadge(card.querySelector('.badge'));
+    const oldIcon = card.querySelector('.app-icon');
+    if (oldIcon) oldIcon.remove();
+    const image = appImage(app.key, 'app-icon', `${app.name} icon`);
+    if (image) card.prepend(image);
+    canvaBadge(card.querySelector('.badge'));
   });
 
   const product = APP_INFO[current];
@@ -143,7 +142,7 @@ function hydrateApps() {
         glyph.appendChild(image);
       }
     }
-    document.querySelectorAll('.product-hero .badge').forEach(reviewBadge);
+    document.querySelectorAll('.product-hero .badge').forEach(canvaBadge);
   }
 
   const statusList = document.querySelector('.status-list');
@@ -151,10 +150,10 @@ function hydrateApps() {
     const rows = [
       ['Public website','Company, app, support, privacy, and terms pages','GitHub Pages','Operational',''],
       ['Support email','Questions and issue reports','hello.theozlabs@gmail.com','Operational',''],
-      ['SerialFlow','Variable-data production and synchronized serial fields','Canva marketplace review','In review','serialflow'],
-      ['PosterTile','Large-format tiling, page order, and assembly guidance','Canva marketplace review','In review','postertile'],
-      ['BookletFlow','Booklet imposition, folding order, and page preparation','Canva marketplace review','In review','bookletflow'],
-      ['SheetNest','Efficient print-sheet packing by size, quantity, and spacing','Canva marketplace review','In review','sheetnest']
+      ['SerialFlow','Variable-data production and synchronized serial fields','Canva workflow','For Canva users','serialflow'],
+      ['PosterTile','Large-format tiling, page order, and assembly guidance','Canva workflow','For Canva users','postertile'],
+      ['BookletFlow','Booklet imposition, folding order, and page preparation','Canva workflow','For Canva users','bookletflow'],
+      ['SheetNest','Efficient print-sheet packing by size, quantity, and spacing','Canva workflow','For Canva users','sheetnest']
     ];
     statusList.innerHTML = '';
     rows.forEach(([name, description, detail, state, key]) => {
@@ -172,27 +171,19 @@ function hydrateApps() {
       const middle = document.createElement('span');
       middle.textContent = detail;
       const right = document.createElement('span');
-      right.className = `status-state${state === 'In review' ? ' review' : ''}`;
+      right.className = `status-state${state === 'For Canva users' ? ' canva-users' : ''}`;
       right.textContent = state;
       row.append(left, middle, right);
       statusList.appendChild(row);
     });
     const statusTitle = document.querySelector('.hero.compact h1');
     const statusLead = document.querySelector('.hero.compact .lead');
-    if (statusTitle) statusTitle.textContent = 'Services online. Apps in Canva review.';
-    if (statusLead) statusLead.textContent = 'Current availability for TheOzLabs public pages, application reviews, and support services.';
+    if (statusTitle) statusTitle.textContent = 'Services online. Built for Canva users.';
+    if (statusLead) statusLead.textContent = 'Current availability for TheOzLabs public pages, Canva workflows, and support services.';
   }
 }
 
-(async () => {
-  try {
-    for (const src of ASSET_SCRIPTS) await loadScript(src);
-    hydrateApps();
-  } catch (error) {
-    console.error('TheOzLabs asset loading failed', error);
-    document.querySelectorAll('.badge').forEach(reviewBadge);
-  }
-})();
+Promise.all(ASSET_SCRIPTS.map(loadScript)).then(hydrateApps);
 
 const pages = ['apps.html','serialflow.html','postertile.html','bookletflow.html','sheetnest.html','status.html','support.html','privacy.html','terms.html'];
 const idle = window.requestIdleCallback || ((callback) => setTimeout(callback, 400));
